@@ -18,17 +18,23 @@ export default function BasicTable(props) {
   const [search] = StoreContext();
   console.log(search.search);
   React.useEffect(() => {
-    fetch(`http://localhost:3000/product?nameProduct=${search.search}`)
+    fetch(
+      `https://authen-crud-g80gi2b2r-nguyenminhhoang2001.vercel.app/product?nameProduct=${search.search}`
+    )
       .then((dataPage) => dataPage.json())
       .then((dataPage) => setData(dataPage));
   }, [search.search]);
   const getList = () => {
-    fetch("http://localhost:3000/product")
+    fetch(
+      "https://authen-crud-g80gi2b2r-nguyenminhhoang2001.vercel.app/product"
+    )
       .then((data) => data.json())
       .then((data) => {
         setCount(Math.ceil(data.length / 5));
       });
-    fetch(`http://localhost:3000/product?_page=${page}&_limit=5`)
+    fetch(
+      `https://authen-crud-g80gi2b2r-nguyenminhhoang2001.vercel.app/product?_page=${page}&_limit=5`
+    )
       .then((dataPage) => dataPage.json())
       .then((dataPage) => setData(dataPage));
   };
@@ -37,12 +43,15 @@ export default function BasicTable(props) {
   }, [page]);
 
   const handleDelete = (id1) => {
-    fetch(`http://localhost:3000/product/${id1}`, {
-      method: "delete",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    fetch(
+      `https://authen-crud-g80gi2b2r-nguyenminhhoang2001.vercel.app/product/${id1}`,
+      {
+        method: "delete",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
       .then((data) => data.json())
       .then((data) => {
         getList();

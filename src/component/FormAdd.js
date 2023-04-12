@@ -21,13 +21,16 @@ export default function FormDialog(props) {
     setOpen(true);
   };
   const handleAdd = () => {
-    fetch("http://localhost:3000/product", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(product),
-    }).then((data) => {
+    fetch(
+      "https://authen-crud-g80gi2b2r-nguyenminhhoang2001.vercel.app/product",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(product),
+      }
+    ).then((data) => {
       if (data.status === 201) {
         setProduct({
           ...product,
@@ -66,14 +69,17 @@ export default function FormDialog(props) {
     props.setEdit(false);
   };
   const handleUpdate = () => {
-    fetch(`http://localhost:3000/product/${product.id}`, {
-      method: "put",
-      headers: {
-        "Content-Type": "application/json",
+    fetch(
+      `https://authen-crud-g80gi2b2r-nguyenminhhoang2001.vercel.app/product/${product.id}`,
+      {
+        method: "put",
+        headers: {
+          "Content-Type": "application/json",
+          body: JSON.stringify(product),
+        },
         body: JSON.stringify(product),
-      },
-      body: JSON.stringify(product),
-    }).then((data) => data.json());
+      }
+    ).then((data) => data.json());
     setProduct({
       id: "",
       nameProduct: "",
